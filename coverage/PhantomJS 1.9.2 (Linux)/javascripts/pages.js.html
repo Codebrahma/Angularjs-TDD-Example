@@ -186,10 +186,10 @@
         Statements: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">83.33% <small>(5 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(6 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Lines: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -243,97 +243,97 @@
 42
 43
 44</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">8</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("appl",[])
-.controller("TDDTestController",["$scope","$http","$filter",function($scope,$http,$filter){
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var application_module = angular.module("appl",[])
+application_module.controller("TDDTestController",["$scope","$http","$filter",function($scope,$http,$filter){
+  $scope.original_datas = [];
   $scope.datas = [];
-  $scope.temp = {
-     datas:[]
-  };
 &nbsp;
-  $scope.$root.xhrRequestStatus = "idle";
   $scope.loadData = function(){
+    // FIXME: make this an array
   	$scope.$root.xhrRequestStatus = "working";
     $http.get("/mock.json").then(function(data){
-        $scope.datas = data.data;
+        $scope.original_datas = data.data;
+        $scope.datas = $scope.original_datas;
         $scope.$root.xhrRequestStatus = "idle";
     });
   };
 &nbsp;
   $scope.filterByRate = function(){
-    var filtered;
-    <span class="missing-if-branch" title="else path not taken"" >E</span>if( $scope.temp.datas.length &lt; $scope.datas.length ){
-       $scope.temp.datas = $scope.datas;
-    };
-    filtered = $filter('byRate')($scope.temp.datas,{start:$scope.filterByRateFrom,end:$scope.filterByRateTo});
+    
+    // If any of the fields arent ready
+    if(!$scope.filterByRateFrom || !$scope.filterByRateTo) {
+      $scope.datas = $scope.original_datas;
+      return;
+    }
+&nbsp;
+    // The fields are ready, so FILTER!
+    filtered = $filter('byRate')($scope.original_datas, {
+      start : $scope.filterByRateFrom,
+      end   : $scope.filterByRateTo
+    });
     $scope.datas = filtered;     
   };
 &nbsp;
-}])
-&nbsp;
-.filter("byRate",function(){
-   return function(items,params){
-&nbsp;
-     params.start = Math.abs(params.start);
-     params.end = Math.abs(params.end);
-&nbsp;
-     var filtered =  _.filter(items,function(item){
-       return item.rate.value &gt;= params.start &amp;&amp; item.rate.value &lt;= params.end;
-     });
-&nbsp;
-     if( filtered.length == 0 ){
-        filtered = items;
-     };
-     return filtered;
-   };
+}]);
+application_module.filter("byRate",function(){
+  var within_range = function(value, range){
+    value = parseFloat(value);
+    return value &gt;= range.start &amp;&amp; value &lt;= range.end;
+  }
+  return function(items,params){
+    return _.filter(items,function(item){
+      return within_range(item.rate.value, params);
+    });
+  };
 });
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 08 2014 09:53:43 GMT+0530 (IST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 08 2014 14:04:47 GMT+0530 (IST)</div>
 </div>
 
 <script src="../prettify.js"></script>
