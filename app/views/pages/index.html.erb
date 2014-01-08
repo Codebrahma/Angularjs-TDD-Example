@@ -1,0 +1,61 @@
+<div data-ng-app="appl">
+	<div data-ng-controller="TDDTestController">
+      <span data-ng-init="loadData()"></span>
+      <div class="row">
+      <div class="col-md-3">
+            <div class="highlight">
+                  <h3>Sort by Interest rates</h3>
+                  <div class="form-group">
+                       <input type="text" class="form-control" placeholder="from" data-ng-keyup="filterByRate()" data-ng-model="filterByRateFrom"/>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" data-ng-keyup="filterByRate()" placeholder="to" data-ng-model="filterByRateTo"/>
+                  </div>
+            </div>
+
+            <div class="highlight">
+                  <h3>Sort by Amount</h3>
+                  <div class="form-group">
+                       <input type="text" class="form-control" placeholder="from" data-ng-keyup="filterByAmount()" data-ng-model="filterByAmountFrom"/>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" data-ng-keyup="filterByAmount()" placeholder="to" data-ng-model="filterByAmountTo"/>
+                  </div>
+            </div>
+      </div>
+      <div class="col-md-9">
+       <table class="table table-bodered">
+      	<tr>
+      		<th>Investment</th>
+      		<th>Rate</th>
+      		<th>Term</th>
+      		<th>Fico</th>
+      		<th>Amount</th>
+      		<th>Title/Purpose</th>
+      		<th>Funded</th>
+      		<th>Amount/Time left</th>
+      	</tr>
+      	<tr data-ng-repeat="data in datas">
+      		<td data-ng-bind="data.investment"></td>
+      		<td>
+      			<span data-ng-bind="data.rate.cateory"></span>
+      			/<span data-ng-bind="data.rate.value"></span>
+      		</td>
+      		<td data-ng-bind="data.term"></td>
+      		<td data-ng-bind="data.fico"></td>
+      		<td data-ng-bind="data.amount"></td>
+      		<td>
+      			<span data-ng-bind="data.title"></span>
+      			/<span data-ng-bind="data.purpose"></span>
+      		</td>
+      		<td data-ng-bind="data.funded"></td>
+      		<td >
+      			<span data-ng-bind="data.time"></span>
+      			/<span data-ng-bind="data.amount-left"></span>
+      		</td>
+      	 </tr>
+        </table>
+       </div>
+      </div>
+	</div>
+</div>
