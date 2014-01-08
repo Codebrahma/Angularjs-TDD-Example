@@ -1,43 +1,43 @@
-angular.module("appl",[])
-.controller("TDDTestController",["$scope","$http","$filter",function($scope,$http,$filter){
+var application_module = angular.module("appl",[])
+application_module.controller("TDDTestController",["$scope","$http","$filter",function($scope,$http,$filter){
+  $scope.original_datas = [];
   $scope.datas = [];
-  $scope.temp = {
-     datas:[]
-  };
 
-  $scope.$root.xhrRequestStatus = "idle";
   $scope.loadData = function(){
+    // FIXME: make this an array
   	$scope.$root.xhrRequestStatus = "working";
     $http.get("/mock.json").then(function(data){
-        $scope.datas = data.data;
+        $scope.original_datas = data.data;
+        $scope.datas = $scope.original_datas;
         $scope.$root.xhrRequestStatus = "idle";
     });
   };
 
   $scope.filterByRate = function(){
-    var filtered;
-    if( $scope.temp.datas.length < $scope.datas.length ){
-       $scope.temp.datas = $scope.datas;
-    };
-    filtered = $filter('byRate')($scope.temp.datas,{start:$scope.filterByRateFrom,end:$scope.filterByRateTo});
+    
+    // If any of the fields arent ready
+    if(!$scope.filterByRateFrom || !$scope.filterByRateTo) {
+      $scope.datas = $scope.original_datas;
+      return;
+    }
+
+    // The fields are ready, so FILTER!
+    filtered = $filter('byRate')($scope.original_datas, {
+      start : $scope.filterByRateFrom,
+      end   : $scope.filterByRateTo
+    });
     $scope.datas = filtered;     
   };
 
-}])
-
-.filter("byRate",function(){
-   return function(items,params){
-
-     params.start = Math.abs(params.start);
-     params.end = Math.abs(params.end);
-
-     var filtered =  _.filter(items,function(item){
-       return item.rate.value >= params.start && item.rate.value <= params.end;
-     });
-
-     if( filtered.length == 0 ){
-        filtered = items;
-     };
-     return filtered;
-   };
+}]);
+application_module.filter("byRate",function(){
+  var within_range = function(value, range){
+    value = parseFloat(value);
+    return value >= range.start && value <= range.end;
+  }
+  return function(items,params){
+    return _.filter(items,function(item){
+      return within_range(item.rate.value, params);
+    });
+  };
 });
