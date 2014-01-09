@@ -7,20 +7,20 @@
             <div class="highlight">
                   <h3>Sort by Interest rates</h3>
                   <div class="form-group">
-                       <input type="text" class="form-control" placeholder="from" data-ng-keyup="filterByRate()" data-ng-model="filterByRateFrom"/>
+                       <input type="text" class="form-control" placeholder="from"  data-ng-model="filterByRateFrom"/>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" data-ng-keyup="filterByRate()" placeholder="to" data-ng-model="filterByRateTo"/>
+                    <input type="text" class="form-control"  placeholder="to" data-ng-model="filterByRateTo"/>
                   </div>
             </div>
 
             <div class="highlight">
                   <h3>Sort by Amount</h3>
                   <div class="form-group">
-                       <input type="text" class="form-control" placeholder="from" data-ng-keyup="filterByAmount()" data-ng-model="filterByAmountFrom"/>
+                       <input type="text" class="form-control" placeholder="from" data-ng-model="filterByAmountFrom"/>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" data-ng-keyup="filterByAmount()" placeholder="to" data-ng-model="filterByAmountTo"/>
+                    <input type="text" class="form-control" placeholder="to" data-ng-model="filterByAmountTo"/>
                   </div>
             </div>
       </div>
@@ -36,7 +36,7 @@
       		<th>Funded</th>
       		<th>Amount/Time left</th>
       	</tr>
-      	<tr data-ng-repeat="data in datas">
+      	<tr data-ng-repeat="data in datas | byRate:{start:filterByRateFrom,end:filterByRateTo}">
       		<td data-ng-bind="data.investment"></td>
       		<td>
       			<span data-ng-bind="data.rate.cateory"></span>

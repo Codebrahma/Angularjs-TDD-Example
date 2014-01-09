@@ -34,6 +34,7 @@ describe("Index Page",function(){
        finalLength = rows.length;
      }).then(function(){
        expect(finalLength).toBeLessThan(initialLength);
+       expect(finalLength).not.toBe(0);	
      });
   });
 

@@ -13,31 +13,21 @@ application_module.controller("TDDTestController",["$scope","$http","$filter",fu
     });
   };
 
-  $scope.filterByRate = function(){
-    
-    // If any of the fields arent ready
-    if(!$scope.filterByRateFrom || !$scope.filterByRateTo) {
-      $scope.datas = $scope.original_datas;
-      return;
-    }
-
-    // The fields are ready, so FILTER!
-    filtered = $filter('byRate')($scope.original_datas, {
-      start : $scope.filterByRateFrom,
-      end   : $scope.filterByRateTo
-    });
-    $scope.datas = filtered;     
-  };
-
 }]);
+
 application_module.filter("byRate",function(){
-  var within_range = function(value, range){
+  var isWithinRange = function(value, range){
     value = parseFloat(value);
     return value >= range.start && value <= range.end;
-  }
+  };
   return function(items,params){
-    return _.filter(items,function(item){
-      return within_range(item.rate.value, params);
-    });
+    var filtered = items;
+    if(params.start && params.end){
+      filtered = _.filter(items,function(item){
+        return isWithinRange(item.rate.value, params);
+      });
+    }
+
+    return filtered;
   };
 });

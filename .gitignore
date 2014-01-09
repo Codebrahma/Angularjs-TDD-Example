@@ -16,5 +16,7 @@
 /tmp
 
 .DS_Store
-coverage/
+/coverage/
+/node_modules/
+
 karma.conf.js

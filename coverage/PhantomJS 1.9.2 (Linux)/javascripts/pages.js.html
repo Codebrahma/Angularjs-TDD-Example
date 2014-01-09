@@ -183,16 +183,16 @@
     <h1>Code coverage report for <span class="entity">javascripts/pages.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(20 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">100% <small>(6 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.33% <small>(5 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(20 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">javascripts/</a> &#187; pages.js</div>
@@ -232,22 +232,12 @@
 31
 32
 33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+34</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
@@ -257,32 +247,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">22</span>
-<span class="cline-any cline-yes">22</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">22</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var application_module = angular.module("appl",[])
@@ -300,32 +280,22 @@ application_module.controller("TDDTestController",["$scope","$http","$filter",fu
     });
   };
 &nbsp;
-  $scope.filterByRate = function(){
-    
-    // If any of the fields arent ready
-    if(!$scope.filterByRateFrom || !$scope.filterByRateTo) {
-      $scope.datas = $scope.original_datas;
-      return;
-    }
-&nbsp;
-    // The fields are ready, so FILTER!
-    filtered = $filter('byRate')($scope.original_datas, {
-      start : $scope.filterByRateFrom,
-      end   : $scope.filterByRateTo
-    });
-    $scope.datas = filtered;     
-  };
-&nbsp;
 }]);
+&nbsp;
 application_module.filter("byRate",function(){
-  var within_range = function(value, range){
+  var isWithinRange = function(value, range){
     value = parseFloat(value);
     return value &gt;= range.start &amp;&amp; value &lt;= range.end;
-  }
+  };
   return function(items,params){
-    return _.filter(items,function(item){
-      return within_range(item.rate.value, params);
-    });
+    var filtered = items;
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if(params.start &amp;&amp; params.end){
+      filtered = _.filter(items,function(item){
+        return isWithinRange(item.rate.value, params);
+      });
+    }
+&nbsp;
+    return filtered;
   };
 });
 &nbsp;</pre></td></tr>
@@ -333,7 +303,7 @@ application_module.filter("byRate",function(){
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 08 2014 14:04:47 GMT+0530 (IST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 09 2014 10:58:47 GMT+0530 (IST)</div>
 </div>
 
 <script src="../prettify.js"></script>

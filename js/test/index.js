@@ -48,38 +48,8 @@ describe("TDDTest Controller", function() {
 
     // Setting rootScope Request Status to idle
     expect($rootScope.xhrRequestStatus).toEqual("idle");
-  });
+  }); 
 
-  it("should not filter when the range is not available", function(){
-    $scope.filterByRateFrom = undefined;
-    $scope.filterByRateTo   = undefined;
-
-    $scope.original_datas = DEFAULT_DATA;
-    $scope.filterByRate();
-
-    expect($scope.datas).toEqual(DEFAULT_DATA);
-  });
-
-  it("filterByRate should return filtered data and store actual data in original_data",function(){
-     $scope.filterByRateFrom = 11;
-     $scope.filterByRateTo = 12;
-
-     $scope.original_datas = DEFAULT_DATA;
-     $scope.filterByRate();
-
-     expect($scope.original_datas).toEqual(DEFAULT_DATA);
-     expect($scope.datas).toEqual(INTEREST_RATE_BETWEEN_11_AND_12);  
-  });
-  it("filterByRate should return the actual data stored in original_data if nothing is returned",function(){
-     $scope.filterByRateFrom = 15;
-     $scope.filterByRateTo = 19;
-
-     $scope.original_datas = DEFAULT_DATA;
-     $scope.filterByRate();
-
-     expect($scope.original_datas).toEqual(DEFAULT_DATA);
-     expect($scope.datas).toEqual([]);
-  });
 });
 
 
